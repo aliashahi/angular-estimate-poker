@@ -1,0 +1,28 @@
+<div class="w-full grid grid-cols-1 p-4 justify-center md:w-2/3 mx-auto">
+  <form [formGroup]="form" (ngSubmit)="createProxy()">
+    <mat-form-field class="w-full" appearance="outline">
+      <mat-label>Label</mat-label>
+      <input
+        class="!text-white"
+        matInput
+        required
+        placeholder="give a label"
+        type="text"
+        formControlName="label"
+      />
+    </mat-form-field>
+    <mat-form-field class="w-full" appearance="outline">
+      <mat-label>Address</mat-label>
+      <input
+        class="!text-white"
+        matInput
+        placeholder="enter bin folder address"
+        type="text"
+        formControlName="address"
+      />
+    </mat-form-field>
+    <br />
+    <br />
+    <button class="w-full" mat-raised-button>Create</button>
+  </form>
+</div>

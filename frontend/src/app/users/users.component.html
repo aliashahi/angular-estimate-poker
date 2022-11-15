@@ -1,0 +1,18 @@
+<div class="md:sticky md:top-24">
+  <ng-container *ngFor="let user of api.Users; let i = index">
+    <div
+      class="w-[calc(100%-32px)] flex justify-start items-center rounded-lg bg-blue-200 m-2 px-2"
+    >
+      <div
+        class="!w-14 !h-14 m-1 inline-block rounded-full bg-green-600 overflow-hidden"
+      >
+        <img [src]="user.image" alt="" />
+      </div>
+      <span class="px-2 text-lg font-serif"
+        >{{ user.username }}
+        <ng-container *ngIf="user.isAdmin">(Admin)</ng-container>
+      </span>
+    </div>
+    <mat-divider *ngIf="i != api.Users.length - 1"></mat-divider>
+  </ng-container>
+</div>

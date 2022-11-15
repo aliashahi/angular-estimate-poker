@@ -1,0 +1,128 @@
+[
+ {
+  "ticket": "136698",
+  "id": "ea8628a6-b255-47fd-9e6f-90a2b7f7d297",
+  "users": [
+   "daca5866-8201-463e-97ed-05755542a91b",
+   "3b146165-d0fb-49a7-a434-35733cb814ae"
+  ],
+  "votes": [
+   {
+    "userId": "3b146165-d0fb-49a7-a434-35733cb814ae",
+    "vote": 2
+   }
+  ],
+  "description": "dfewfgwggwe gw fewewewfdwdwqdqwdq wdvewfqwq d",
+  "status": 1
+ },
+ {
+  "ticket": "136698",
+  "id": "ea8628a6-b255-47fd-9e6f-90a2b7f7d297",
+  "users": [
+   "daca5866-8201-463e-97ed-05755542a91b",
+   "3b146165-d0fb-49a7-a434-35733cb814ae"
+  ],
+  "votes": [],
+  "ownerId": "daca5866-8201-463e-97ed-05755542a91b",
+  "description": "",
+  "status": 1
+ },
+ {
+  "ticket": "136698",
+  "id": "ea8628a6-b255-47fd-9e6f-90a2b7f7d297",
+  "users": [
+   "daca5866-8201-463e-97ed-05755542a91b",
+   "3b146165-d0fb-49a7-a434-35733cb814ae"
+  ],
+  "votes": [],
+  "ownerId": "daca5866-8201-463e-97ed-05755542a91b",
+  "description": "",
+  "status": 1
+ },
+ {
+  "ticket": "132212",
+  "id": "c3dda3e8-9544-4b2f-aba1-f5090a06daba",
+  "users": [
+   "b9772074-2952-40be-a80b-11349f760c38"
+  ],
+  "votes": [],
+  "description": "",
+  "status": 1
+ },
+ {
+  "ticket": "156224",
+  "id": "b1fc5bfd-2138-4edc-a7e0-3da610b2782d",
+  "users": [
+   "c1260666-e611-4b76-9a19-60e57f33dfc0"
+  ],
+  "votes": [],
+  "ownerId": "c1260666-e611-4b76-9a19-60e57f33dfc0",
+  "description": "",
+  "status": 1
+ },
+ {
+  "ticket": "138828",
+  "id": "1997f2a7-659b-44a1-8c93-4ff5c0fca415",
+  "users": [
+   "d9799633-85de-4112-b192-1c01be697547"
+  ],
+  "votes": [
+   {
+    "userId": "d9799633-85de-4112-b192-1c01be697547",
+    "vote": 5
+   }
+  ],
+  "ownerId": "d9799633-85de-4112-b192-1c01be697547",
+  "description": "",
+  "status": 1
+ },
+ {
+  "ticket": "118440",
+  "id": "fd0d07c6-ebcf-45ba-b33b-77d22cac6c3f",
+  "users": [
+   "b0044771-dfa1-41d9-bc9f-d427e15784c3",
+   "eebd1eed-9ab0-41d7-93c6-df9fb2aa3bf2"
+  ],
+  "votes": [
+   {
+    "userId": "b0044771-dfa1-41d9-bc9f-d427e15784c3",
+    "vote": 3
+   }
+  ],
+  "description": "",
+  "status": 2
+ },
+ {
+  "ticket": "121178",
+  "id": "7c018177-dac4-4d80-af6d-6c6a4d5255ae",
+  "users": [
+   "55d41c91-0c97-4a96-81ec-1a5f16f58e0e",
+   "91de1800-cebb-4d4b-b305-04c50b1a30cb",
+   "fcfb971f-aa18-4f19-baf1-01cec80d96fb"
+  ],
+  "votes": [],
+  "description": "",
+  "status": 1
+ },
+ {
+  "ticket": "155333",
+  "id": "04f012f6-ee3a-440f-90e7-65865eb3561e",
+  "users": [
+   "013858a2-e6ba-4b55-ad56-ab4abe69bcdb",
+   "649f2c50-6252-4281-a6c8-9a67dedd566e"
+  ],
+  "votes": [
+   {
+    "userId": "013858a2-e6ba-4b55-ad56-ab4abe69bcdb",
+    "vote": 1
+   },
+   {
+    "userId": "649f2c50-6252-4281-a6c8-9a67dedd566e",
+    "vote": 34
+   }
+  ],
+  "ownerId": "013858a2-e6ba-4b55-ad56-ab4abe69bcdb",
+  "description": "",
+  "status": 2
+ }
+]

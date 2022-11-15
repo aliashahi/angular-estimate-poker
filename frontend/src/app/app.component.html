@@ -1,0 +1,8 @@
+<ng-container *ngIf="api.logedIn; else login">
+  <div class="w-screen h-screen">
+    <router-outlet></router-outlet>
+  </div>
+</ng-container>
+<ng-template #login>
+  <app-login></app-login>
+</ng-template>
