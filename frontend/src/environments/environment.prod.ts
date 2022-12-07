@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  backBaseUrl:"http://wsn-427/estimatePoker/back/"
 };

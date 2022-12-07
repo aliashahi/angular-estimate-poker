@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
-const BASE_URL = 'http://wsn-427/estimatePoker/back/';
+const BASE_URL = environment.backBaseUrl;
 
 export interface BinDto {
   no?: number;

@@ -51,10 +51,14 @@ app.post("/room/create", (req, res) => {
     return res
       .status(400)
       .send({ message: "this room is already exists,refresh page" });
+
+  if (!username || username.trim() == "")
+    return res.status(400).send({ message: "username is invalid" });
+
   const new_user = {
     username,
     id: uuid4(),
-    image: "https://i.pravatar.cc/150?img=" + (randomInt(12) + 1).toString(),
+    image: "https://i.pravatar.cc/150?img=" + (randomInt(0, 70) + 1).toString(),
   };
 
   users.push(new_user);
@@ -143,6 +147,8 @@ app.post("/room/leave", (req, res) => {
       .send({ message: "user not found,check ticket code" });
 
   room.users = room.users.filter((i) => i.id != userId);
+  rooms = rooms.filter((i) => i.ticket != ticket);
+  rooms.push(room);
   if (room.ownerId == userId) {
     if (room.users.length > 0) room.ownerId = room.users[0].id;
     else rooms = rooms.filter((i) => i.id != room.id);
@@ -208,7 +214,40 @@ app.post("/room/set-desc", (req, res) => {
       .send({ message: "user not found,check ticket code" });
 
   room.description = description;
+  rooms = rooms.filter((i) => i.ticket != ticket);
+  rooms.push(room);
+  updateTable(ROOM_TABLE, rooms);
 
+  return res.status(200).send({ message: "", data: {} });
+});
+/* 
+برای حذف یوزر ها توسط کاربر ادمین 
+*/
+app.post("/user/remove", (req, res) => {
+  const { userId, ticket, userIdToRemove } = req.body;
+  const rooms = getTable(ROOM_TABLE);
+  const users = getTable(USER_TABLE);
+  const room = rooms.find((i) => i.ticket == ticket);
+  const user = users.find((i) => i.id == userId);
+  if (!room)
+    return res
+      .status(404)
+      .send({ message: "this room not found,check ticket code" });
+  if (!user)
+    return res
+      .status(404)
+      .send({ message: "user not found,check ticket code" });
+
+  if (!userIdToRemove)
+    return res.status(404).send({ message: "userId to remove is required" });
+
+  if (room.ownerId == userId || userId == userIdToRemove)
+    return res.status(401).send({ message: "not allowed" });
+
+  room.users = room.users.filter((i) => i != userIdToRemove);
+  room.votes = room.votes.filter((i) => i.userId != userIdToRemove);
+  rooms = rooms.filter((i) => i.ticket != ticket);
+  rooms.push(room);
   updateTable(ROOM_TABLE, rooms);
 
   return res.status(200).send({ message: "", data: {} });
@@ -239,7 +278,6 @@ app.post("/vote", (req, res) => {
     vote,
   };
 
-  console.log(new_vote);
   room.votes = room.votes.filter((i) => i.userId != userId);
   if (vote != -1) room.votes.push(new_vote);
   rooms = rooms.filter((i) => i.ticket != ticket);
@@ -268,6 +306,8 @@ app.post("/status", (req, res) => {
       .send({ message: "user not found,check ticket code" });
 
   room.status = status;
+  rooms = rooms.filter((i) => i.ticket != ticket);
+  rooms.push(room);
   updateTable(ROOM_TABLE, rooms);
   return res.status(200).send({ message: "", data: {} });
 });
@@ -320,6 +360,7 @@ app.post("/resetVote", (req, res) => {
 
   room.votes = [];
   room.status = VOTING;
+  rooms = rooms.filter((i) => i.ticket != ticket);
   rooms.push(room);
   updateTable(ROOM_TABLE, rooms);
   return res.status(200).send({ message: "", data: {} });
