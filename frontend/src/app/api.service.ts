@@ -65,8 +65,15 @@ export class ApiService {
   private currentStatus: IStatus = IStatus.VOTING;
   private users: any[] = [];
   private votes: any[] = [];
+
+  hideVote = false;
+
   get Username() {
     return this.user.username;
+  }
+
+  get UserID() {
+    return this.user.id;
   }
 
   set Description(d: string) {
@@ -231,6 +238,27 @@ export class ApiService {
       .post(BASE_URL + `reset`, {
         userId: this.user.id,
         ticket: this.ticket,
+      })
+      .subscribe(() => {});
+  }
+
+  changeUserInfo(user: any, username: string, image: string) {
+    this.http
+      .post(BASE_URL + `user/update`, {
+        userId: this.user.id,
+        username,
+        image,
+      })
+      .subscribe(() => {});
+  }
+
+  removeUserFromRoom(user: any) {
+    if (!this.IsAdmin) return;
+    this.http
+      .post(BASE_URL + `user/remove`, {
+        userId: this.user.id,
+        ticket: this.ticket,
+        userIdToRemove: user.id,
       })
       .subscribe(() => {});
   }

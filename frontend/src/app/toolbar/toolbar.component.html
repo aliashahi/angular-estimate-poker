@@ -1,36 +1,36 @@
 <mat-toolbar class="bg-gray-100 w-screen h-20 sticky top-0 z-40">
-  <span class="">🃏 Estimate Poker</span>
+  <span class="">🃏 SG'Estimate Poker 💪</span>
   <span class="ml-auto"></span>
   <div
     *ngIf="api.IsAdmin"
-    class="p-1 px-2 mx-2 cursor-pointer hover:bg-cyan-200 rounded-lg bg-cyan-100 text-cyan-800"
+    class="p-1 px-2 mx-2 cursor-pointer hover:bg-[#59C1BD] rounded-lg bg-[#A0E4CB] text-black"
     (click)="api.reset()"
   >
     بازچینی
   </div>
   <div
     *ngIf="api.IsAdmin"
-    class="p-1 px-2 mx-2 cursor-pointer hover:bg-orange-200 rounded-lg bg-orange-100 text-orange-800"
+    class="p-1 px-2 mx-2 cursor-pointer hover:bg-[#59C1BD] rounded-lg bg-[#A0E4CB] text-black"
     (click)="api.resetVotes()"
   >
     رای گیری دوباره
   </div>
   <div
-    class="p-1 px-2 mx-2 cursor-pointer hover:bg-yellow-200 rounded-lg bg-yellow-100 text-yellow-800"
+    class="p-1 px-2 mx-2 cursor-pointer animate-pulse hover:bg-[#59C1BD] rounded-lg bg-[#A0E4CB] text-black"
     (click)="api.setStatus()"
   >
     وضعیت : {{ api.CurrentStatusTitle }}
   </div>
   <div
-    class="p-1 px-2 mx-2 cursor-pointer hover:bg-green-200 rounded-lg bg-green-100 text-green-800"
+    class="p-1 px-2 mx-2 cursor-pointer hover:bg-[#CFF5E7] rounded-lg bg-[#CFF5E7] text-[#0e3561]"
     (click)="api.copyToClipboard(api.Ticket)"
   >
     #{{ api.Ticket }}
   </div>
   <div
-    class="p-1 px-2 mx-2 cursor-pointer hover:bg-red-200 rounded-lg bg-red-100 text-red-800"
+    class="p-1 px-2 mx-2 cursor-pointer hover:bg-red-600 rounded-lg bg-red-500 text-white"
     (click)="api.logout()"
   >
-    logout
+    خروج از اتاق
   </div>
 </mat-toolbar>

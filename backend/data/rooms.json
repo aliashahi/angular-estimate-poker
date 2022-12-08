@@ -61,22 +61,6 @@
   "status": 1
  },
  {
-  "ticket": "138828",
-  "id": "1997f2a7-659b-44a1-8c93-4ff5c0fca415",
-  "users": [
-   "d9799633-85de-4112-b192-1c01be697547"
-  ],
-  "votes": [
-   {
-    "userId": "d9799633-85de-4112-b192-1c01be697547",
-    "vote": 5
-   }
-  ],
-  "ownerId": "d9799633-85de-4112-b192-1c01be697547",
-  "description": "",
-  "status": 1
- },
- {
   "ticket": "118440",
   "id": "fd0d07c6-ebcf-45ba-b33b-77d22cac6c3f",
   "users": [
@@ -124,5 +108,21 @@
   "ownerId": "013858a2-e6ba-4b55-ad56-ab4abe69bcdb",
   "description": "",
   "status": 2
+ },
+ {
+  "ticket": "138828",
+  "id": "1997f2a7-659b-44a1-8c93-4ff5c0fca415",
+  "users": [
+   "d9799633-85de-4112-b192-1c01be697547"
+  ],
+  "votes": [
+   {
+    "userId": "d9799633-85de-4112-b192-1c01be697547",
+    "vote": 2
+   }
+  ],
+  "ownerId": "d9799633-85de-4112-b192-1c01be697547",
+  "description": "",
+  "status": 1
  }
 ]

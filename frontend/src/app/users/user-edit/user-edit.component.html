@@ -1,0 +1,41 @@
+<h1 mat-dialog-title class="w-full flex justify-end">ویرایش اطلاعات کاربر</h1>
+<div mat-dialog-content class="flex justify-center">
+  <div class="w-full flex justify-center items-center">
+    <button
+      mat-icon-button
+      color="primary"
+      class="mx-2"
+      (click)="incDecNumber(false)"
+    >
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <img
+      class="!w-32 !h-32 rounded-full"
+      [src]="getImageUrl"
+      alt=":)"
+    />
+    <button
+      mat-icon-button
+      color="primary"
+      class="mx-2"
+      (click)="incDecNumber(true)"
+    >
+      <mat-icon> navigate_next </mat-icon>
+    </button>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>نام کاربری</mat-label>
+    <input matInput type="text" [(ngModel)]="username" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="start">
+  <button mat-button color="accent" [mat-dialog-close]="null">بستن</button>
+  <button
+    mat-button
+    color="primary"
+    [mat-dialog-close]="null"
+    (click)="submitResult()"
+  >
+    ذخیره
+  </button>
+</div>

@@ -146,12 +146,15 @@ app.post("/room/leave", (req, res) => {
       .status(404)
       .send({ message: "user not found,check ticket code" });
 
-  room.users = room.users.filter((i) => i.id != userId);
+  room.users = room.users.filter((i) => i != userId);
   rooms = rooms.filter((i) => i.ticket != ticket);
   rooms.push(room);
   if (room.ownerId == userId) {
-    if (room.users.length > 0) room.ownerId = room.users[0].id;
-    else rooms = rooms.filter((i) => i.id != room.id);
+    if (room.users.length > 0) {
+      room.ownerId = room.users[0].id;
+      rooms = rooms.filter((i) => i.ticket != ticket);
+      rooms.push(room);
+    } else rooms = rooms.filter((i) => i.id != room.id);
   }
 
   updateTable(ROOM_TABLE, rooms);
@@ -191,7 +194,11 @@ app.get("/room/state", (req, res) => {
       status: room.status,
       users: room.users
         .map((i) => users.find((j) => j.id == i))
-        .map((i) => ({ ...i, isAdmin: i.id == room.ownerId })),
+        .map((i) => ({ ...i, isAdmin: i.id == room.ownerId }))
+        .map((i) => ({
+          ...i,
+          hasVoted: Boolean(room.votes.find((j) => j.userId == i.id)),
+        })),
     },
   });
 });
@@ -225,7 +232,7 @@ app.post("/room/set-desc", (req, res) => {
 */
 app.post("/user/remove", (req, res) => {
   const { userId, ticket, userIdToRemove } = req.body;
-  const rooms = getTable(ROOM_TABLE);
+  let rooms = getTable(ROOM_TABLE);
   const users = getTable(USER_TABLE);
   const room = rooms.find((i) => i.ticket == ticket);
   const user = users.find((i) => i.id == userId);
@@ -241,7 +248,7 @@ app.post("/user/remove", (req, res) => {
   if (!userIdToRemove)
     return res.status(404).send({ message: "userId to remove is required" });
 
-  if (room.ownerId == userId || userId == userIdToRemove)
+  if (room.ownerId != userId || userId == userIdToRemove)
     return res.status(401).send({ message: "not allowed" });
 
   room.users = room.users.filter((i) => i != userIdToRemove);
@@ -364,6 +371,33 @@ app.post("/resetVote", (req, res) => {
   rooms.push(room);
   updateTable(ROOM_TABLE, rooms);
   return res.status(200).send({ message: "", data: {} });
+});
+
+/* 
+update user
+*/
+app.post("/user/update", (req, res) => {
+  req;
+  const { userId, username, image } = req.body;
+  let users = getTable(USER_TABLE);
+
+  if (!username || username.trim() == "")
+    return res.status(400).send({ message: "username is invalid" });
+
+  const user = users.find((i) => i.id == userId);
+  if (!user)
+    return res
+      .status(404)
+      .send({ message: "user not found,check ticket code" });
+
+  user.username = username;
+  user.image = image;
+  users = users.filter((i) => i.id != userId);
+  users.push(user);
+
+  updateTable(USER_TABLE, users);
+
+  return res.status(200).send({});
 });
 
 app.get("/", (req, res) => {

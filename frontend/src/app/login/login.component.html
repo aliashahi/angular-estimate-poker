@@ -3,54 +3,54 @@
     class="w-[calc(100vw/2)] h-[calc(100vh/2)] bg-white shadow-2xl rounded-md flex items-center justify-between"
   >
     <div class="w-full flex flex-col items-center px-10">
-      <span class="text-5xl">Create a Room</span>
+      <span class="text-5xl">ساختن اتاق برنامه ریزی</span>
       <span
         (click)="copyToClipboard()"
         class="cursor-pointer hover:bg-gray-200 transition-all text-3xl bg-gray-100 border-dotted border-2 border-gray-500 text-gray-800 rounded-3xl p-2 px-4 m-4"
         >#{{ ticket }}</span
       >
       <mat-form-field class="w-full" appearance="outline">
-        <mat-label>Username</mat-label>
+        <mat-label>نام کاربری</mat-label>
         <input
           matInput
           required
           class="bg-gray-400"
-          placeholder="username"
+          placeholder="برنامه نویس"
           type="text"
           [(ngModel)]="username"
         />
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="createRoom()">
-        Create Room
+        ساخت اتاق برنامه ریزی
       </button>
     </div>
     <div class="!w-[1px] bg-gray-700 rounded-full h-full !my-10"></div>
     <div class="w-full flex flex-col items-center px-10">
-      <span class="text-5xl mb-2">join a Room</span>
+      <span class="text-5xl mb-2">وارد اتاق شو</span>
       <mat-form-field class="w-full" appearance="outline">
-        <mat-label>Username</mat-label>
+        <mat-label>نام کاربری</mat-label>
         <input
           matInput
           required
           class="bg-gray-400"
-          placeholder="username"
+          placeholder="برنامه نویس"
           type="text"
           [(ngModel)]="username"
         />
       </mat-form-field>
       <mat-form-field class="w-full" appearance="outline">
-        <mat-label>Ticket</mat-label>
+        <mat-label>تیکت</mat-label>
         <input
           matInput
           required
           class="bg-gray-400"
-          placeholder="Ticket"
+          placeholder="12312312"
           type="text"
           [(ngModel)]="new_ticket"
         />
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="joinRoom()">
-        join Room
+        ورود
       </button>
     </div>
   </div>

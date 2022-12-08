@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backBaseUrl: 'http://wsn-427/estimatePoker/back/',
+  backBaseUrl: 'http://localhost:4000/',
 };
 
 /*

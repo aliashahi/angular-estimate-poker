@@ -46,10 +46,37 @@ $angular-estimate-poker-theme: mat.define-light-theme(
 @tailwind components;
 @tailwind utilities;
 
-* {
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
   font-family: "Nazanin";
 }
 
-body {
-  margin: 0;
+
+//////scrollbar
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
+
+/* Track */
+*::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgb(167, 167, 167);
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+////////////////////////////////

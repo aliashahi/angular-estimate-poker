@@ -1,17 +1,36 @@
-<div class="md:sticky md:top-24">
+<div class="md:top-24 h-full overflow-y-scroll bg-[#CFF5E7]">
   <ng-container *ngFor="let user of api.Users; let i = index">
     <div
-      class="w-[calc(100%-32px)] flex justify-start items-center rounded-lg bg-blue-200 m-2 px-2"
+      class="group w-[calc(100%-32px)] flex justify-between items-center rounded-lg bg-[#A0E4CB] m-2 px-2"
+      [class.notVoted]="!user.hasVoted"
     >
-      <div
-        class="!w-14 !h-14 m-1 inline-block rounded-full bg-green-600 overflow-hidden"
-      >
-        <img [src]="user.image" alt="" />
+      <div class="flex items-center justify-start">
+        <div
+          class="!w-14 !h-14 m-1 inline-block rounded-full bg-green-100 overflow-hidden"
+        >
+          <img [src]="user.image" alt="" />
+        </div>
+        <span class="px-2 text-lg font-serif"
+          >{{ user.username }}
+          <ng-container *ngIf="user.isAdmin">(مدیر)</ng-container>
+        </span>
       </div>
-      <span class="px-2 text-lg font-serif"
-        >{{ user.username }}
-        <ng-container *ngIf="user.isAdmin">(Admin)</ng-container>
-      </span>
+      <div class="flex items-center justify-end">
+        <mat-icon
+          *ngIf="user.id == api.UserID"
+          (click)="editUserInfo(user)"
+          class="mx-2 cursor-pointer transition-all opacity-0 group-hover:opacity-100"
+          color="primary"
+          >edit</mat-icon
+        >
+        <mat-icon
+          *ngIf="api.IsAdmin"
+          (click)="api.removeUserFromRoom(user)"
+          class="cursor-pointer transition-all opacity-0 group-hover:opacity-100"
+          color="warn"
+          >delete</mat-icon
+        >
+      </div>
     </div>
     <mat-divider *ngIf="i != api.Users.length - 1"></mat-divider>
   </ng-container>

@@ -23,6 +23,8 @@ import { LoginComponent } from './login/login.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     UsersComponent,
     LoginComponent,
     ToolbarComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MatTableModule,
     MatSlideToggleModule,
     MatSelectModule,
+    MatDialogModule,
     MatExpansionModule,
     MatCheckboxModule,
     ToastrModule.forRoot({ positionClass: 'toast-bottom-center' }),

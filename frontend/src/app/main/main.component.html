@@ -1,76 +1,105 @@
-<app-toolbar></app-toolbar>
-<div class="grid grid-cols-12">
-  <div class="col-span-12 md:col-span-3 relative">
-    <app-users></app-users>
-  </div>
-  <div
-    class="col-span-12 md:col-span-9 flex flex-col justify-start items-center"
-  >
-    <mat-form-field class="w-full" appearance="outline">
-      <mat-label>Task Description</mat-label>
-      <textarea
-        matInput
-        [readonly]="!api.IsAdmin"
-        placeholder="task description"
-        type="text"
-        rows="12"
-        [(ngModel)]="api.Description"
-        (ngModelChange)="api.setDesc()"
-      ></textarea>
-    </mat-form-field>
-    <div class="w-full p-2" *ngIf="api.IsAdmin">
-      <mat-checkbox class="mx-4" [(ngModel)]="api.Live"
-        >لحظه ای ثبت شود</mat-checkbox
-      >
-      <button
-        color="primary"
-        [disabled]="api.Live"
-        mat-raised-button
-        (click)="api.setDesc(true)"
-      >
-        ثبت توضیحات
-      </button>
+<app-toolbar class="!sticky z-10"></app-toolbar>
+<div class="!sticky top-20">
+  <div class="grid grid-cols-12">
+    <div class="col-span-12 md:col-span-3 relative">
+      <app-users></app-users>
     </div>
-    <div class="w-full overflow-hidden overflow-x-scroll">
-      <div class="sticky p-2 mb-4 left-0 text-2xl font-serif font-semibold">
-        Your Options
-      </div>
-      <div class="grid grid-flow-col">
-        <ng-container *ngFor="let item of [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233]">
-          <div
-            (click)="api.setVote(item)"
-            class="!w-36 !h-48 bg-yellow-500 hover:bg-yellow-600 mx-2 rounded-lg cursor-pointer flex justify-center items-center text-7xl text-white font-bold font-serif"
-            [class.!bg-red-500]="api.CurrentVote == item"
-          >
-            {{ item }}
-          </div>
-        </ng-container>
-      </div>
-    </div>
-    <div class="w-full overflow-hidden overflow-x-scroll">
-      <div class="sticky p-2 mb-4 left-0 text-2xl font-serif font-semibold">
-        Votes
-      </div>
-      <div class="grid grid-flow-col justify-start">
-        <ng-container *ngFor="let item of api.Votes">
-          <div
-            class="!w-36 !h-48 bg-red-500 mx-2 rounded-lg cursor-pointer flex flex-col justify-center items-center text-2xl text-white font-bold font-serif"
-            [class.bg-purple-500]="api.CurrentVote == item"
-          >
-            <div
-              class="!w-14 !h-14 m-1 inline-block rounded-full bg-green-600 overflow-hidden"
-            >
-              <img [src]="item.image" alt="" />
-            </div>
-            {{ item.username }}
-            <div
-              class="!w-10 !h-10 rounded-full overflow-hidden bg-gray-800 text-white flex justify-center items-center"
-              *ngIf="api.IsFreeze"
-            >
-              {{ item.vote }}
+    <div
+      class="col-span-12 md:col-span-9 flex flex-col justify-start items-center overflow-x-hidden"
+    >
+      <!-- <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Task Description</mat-label>
+        <textarea
+          matInput
+          [readonly]="!api.IsAdmin"
+          placeholder="task description"
+          type="text"
+          rows="12"
+          [(ngModel)]="api.Description"
+          (ngModelChange)="api.setDesc()"
+        ></textarea>
+      </mat-form-field>
+      <div class="w-full py-2" *ngIf="api.IsAdmin">
+        <mat-checkbox class="mx-4" [(ngModel)]="api.Live"
+          >لحظه ای ثبت شود</mat-checkbox
+        >
+        <button
+          color="primary"
+          [disabled]="api.Live"
+          mat-raised-button
+          (click)="api.setDesc(true)"
+        >
+          ثبت توضیحات
+        </button>
+      </div> -->
+      <div class="w-full overflow-hidden overflow-x-scroll">
+        <div class="sticky p-2 mb-4 left-0 text-2xl font-serif font-semibold">
+          <div class="flex justify-between items-center">
+            <span>گزینه ها </span>
+            <div>
+              <span
+                class="text-sm font-normal bg-[#CFF5E7] text-[#0D4C92] p-2 rounded-md"
+              >
+                <mat-checkbox [(ngModel)]="api.hideVote"
+                  >پنهان کردن رای بعد از رای دادن</mat-checkbox
+                >
+              </span>
             </div>
           </div>
-        </ng-container>
+        </div>
+        <div class="grid grid-flow-col">
+          <ng-container
+            *ngFor="
+              let item of [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233]
+            "
+          >
+            <ng-container
+              *ngIf="!api.CurrentVote || !api.hideVote; else skeleton"
+            >
+              <div
+                (click)="api.setVote(item)"
+                class="!w-20 !h-28 bg-[#59C1BD] hover:bg-[#439c98] mx-1 my-2 rounded-lg cursor-pointer flex justify-center items-center text-2xl text-white font-bold font-serif"
+                [class.!bg-red-500]="api.CurrentVote == item"
+              >
+                {{ item }}
+              </div>
+            </ng-container>
+            <ng-template #skeleton>
+              <div
+                (click)="api.setVote(item)"
+                class="!w-20 !h-28 animate-pulse bg-gray-500 mx-1 my-2 rounded-lg cursor-pointer flex justify-center items-center text-2xl text-white font-bold font-serif"
+              >
+                {{ item }}
+              </div>
+            </ng-template>
+          </ng-container>
+        </div>
+      </div>
+      <div class="w-full overflow-hidden overflow-x-scroll">
+        <div class="sticky p-2 mb-4 left-0 text-2xl font-serif font-semibold">
+          رای ها
+        </div>
+        <div class="grid grid-flow-col justify-start">
+          <ng-container *ngFor="let item of api.Votes">
+            <div
+              class="!w-36 !h-48 bg-red-500 mx-2 rounded-lg cursor-pointer flex flex-col justify-center items-center text-white font-bold font-serif"
+              [class.bg-purple-500]="api.CurrentVote == item"
+            >
+              <div
+                class="!w-14 !h-14 m-1 inline-block rounded-full bg-green-100 overflow-hidden"
+              >
+                <img [src]="item.image" alt="" />
+              </div>
+              {{ item.username }}
+              <div
+                class="!w-10 !h-10 rounded-full overflow-hidden bg-gray-800 text-white flex justify-center items-center"
+                *ngIf="api.IsFreeze"
+              >
+                {{ item.vote }}
+              </div>
+            </div>
+          </ng-container>
+        </div>
       </div>
     </div>
   </div>
