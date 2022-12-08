@@ -151,7 +151,7 @@ app.post("/room/leave", (req, res) => {
   rooms.push(room);
   if (room.ownerId == userId) {
     if (room.users.length > 0) {
-      room.ownerId = room.users[0].id;
+      room.ownerId = room.users[0];
       rooms = rooms.filter((i) => i.ticket != ticket);
       rooms.push(room);
     } else rooms = rooms.filter((i) => i.id != room.id);
