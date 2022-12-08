@@ -16,10 +16,11 @@
     رای گیری دوباره
   </div>
   <div
-    class="p-1 px-2 mx-2 cursor-pointer animate-pulse hover:bg-[#59C1BD] rounded-lg bg-[#A0E4CB] text-black"
-    (click)="api.setStatus()"
+    class="p-1 px-2 mx-2 cursor-pointer hover:bg-[#59C1BD] rounded-lg bg-[#A0E4CB] text-black"
   >
-    وضعیت : {{ api.CurrentStatusTitle }}
+    <mat-slide-toggle (change)="api.setStatus()"
+      >{{ api.CurrentStatusTitle }}
+    </mat-slide-toggle>
   </div>
   <div
     class="p-1 px-2 mx-2 cursor-pointer hover:bg-[#CFF5E7] rounded-lg bg-[#CFF5E7] text-[#0e3561]"

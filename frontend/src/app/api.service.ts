@@ -48,11 +48,13 @@ export class ApiService {
     } catch {
       this.user = { username: '', id: '' };
     }
+    this.hideVote = localStorage.getItem('hideVote') == '1';
   }
 
   writeToLocalStorage() {
     localStorage.setItem('user', JSON.stringify(this.user));
     localStorage.setItem('ticket', this.ticket);
+    localStorage.setItem('hideVote', this.hideVote ? '1' : '0');
   }
 
   private _logedIn = false;
@@ -66,7 +68,16 @@ export class ApiService {
   private users: any[] = [];
   private votes: any[] = [];
 
-  hideVote = false;
+  _hideVote = false;
+
+  set hideVote(v: boolean) {
+    this._hideVote = v;
+    this.writeToLocalStorage();
+  }
+
+  get hideVote() {
+    return this._hideVote;
+  }
 
   get Username() {
     return this.user.username;

@@ -44,7 +44,7 @@ ticket
 app.post("/room/create", (req, res) => {
   req;
   const { username, ticket } = req.body;
-  const rooms = getTable(ROOM_TABLE);
+  let rooms = getTable(ROOM_TABLE);
   const users = getTable(USER_TABLE);
 
   if (rooms.find((i) => i.ticket == ticket))
@@ -207,7 +207,7 @@ app.get("/room/state", (req, res) => {
 */
 app.post("/room/set-desc", (req, res) => {
   const { userId, ticket, description } = req.body;
-  const rooms = getTable(ROOM_TABLE);
+  let rooms = getTable(ROOM_TABLE);
   const users = getTable(USER_TABLE);
   const room = rooms.find((i) => i.ticket == ticket);
   const user = users.find((i) => i.id == userId);
@@ -299,7 +299,7 @@ app.post("/vote", (req, res) => {
 */
 app.post("/status", (req, res) => {
   const { userId, ticket, status } = req.body;
-  const rooms = getTable(ROOM_TABLE);
+  let rooms = getTable(ROOM_TABLE);
   const users = getTable(USER_TABLE);
   const room = rooms.find((i) => i.ticket == ticket);
   const user = users.find((i) => i.id == userId);
@@ -352,7 +352,7 @@ app.post("/reset", (req, res) => {
 */
 app.post("/resetVote", (req, res) => {
   const { userId, ticket } = req.body;
-  const rooms = getTable(ROOM_TABLE);
+  let rooms = getTable(ROOM_TABLE);
   const users = getTable(USER_TABLE);
   const room = rooms.find((i) => i.ticket == ticket);
   const user = users.find((i) => i.id == userId);
