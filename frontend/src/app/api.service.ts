@@ -203,6 +203,19 @@ export class ApiService {
       });
   }
 
+  resetVote() {
+    if (this.IsFreeze) return;
+    this.http
+      .post(BASE_URL + `vote`, {
+        userId: this.user.id,
+        ticket: this.ticket,
+        vote: -1,
+      })
+      .subscribe(() => {
+        this.currentVote = -1;
+      });
+  }
+
   setStatus() {
     if (this.IsAdmin)
       this.http

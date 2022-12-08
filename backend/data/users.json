@@ -54,11 +54,6 @@
   "image": "https://i.pravatar.cc/150?img=6"
  },
  {
-  "username": "SHADOW",
-  "id": "d9799633-85de-4112-b192-1c01be697547",
-  "image": "https://i.pravatar.cc/150?img=69"
- },
- {
   "username": "معین",
   "id": "5e80f3a8-d799-4ccd-bbe1-37be4fe8d9f2",
   "image": "https://i.pravatar.cc/150?img=9"
@@ -77,5 +72,10 @@
   "username": "معین",
   "id": "208eeca0-43ed-49f1-9377-c4d886fed6bc",
   "image": "https://i.pravatar.cc/150?img=7"
+ },
+ {
+  "username": "SHADOW",
+  "id": "d9799633-85de-4112-b192-1c01be697547",
+  "image": "https://i.pravatar.cc/150?img=5"
  }
 ]

@@ -37,6 +37,16 @@
           <div class="flex justify-between items-center">
             <span>گزینه ها </span>
             <div>
+              <button
+                mat-raised-button
+                color="warn"
+                class="mx-4"
+                *ngIf="!api.IsFreeze && api.CurrentVote != -1"
+                (click)="api.resetVote()"
+              >
+                پس گرفتن رای
+              </button>
+              <span class="!w-4 opacity-0">&scnap;</span>
               <span
                 class="text-sm font-normal bg-[#CFF5E7] text-[#0D4C92] p-2 rounded-md"
               >
@@ -54,7 +64,7 @@
             "
           >
             <ng-container
-              *ngIf="!api.CurrentVote || !api.hideVote; else skeleton"
+              *ngIf="api.CurrentVote == -1 || !api.hideVote; else skeleton"
             >
               <div
                 (click)="api.setVote(item)"

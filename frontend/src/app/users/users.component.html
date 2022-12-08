@@ -24,7 +24,7 @@
           >edit</mat-icon
         >
         <mat-icon
-          *ngIf="api.IsAdmin"
+          *ngIf="api.IsAdmin && user.id != api.UserID"
           (click)="api.removeUserFromRoom(user)"
           class="cursor-pointer transition-all opacity-0 group-hover:opacity-100"
           color="warn"
