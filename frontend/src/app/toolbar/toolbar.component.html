@@ -67,7 +67,7 @@
         <mat-icon>how_to_vote</mat-icon>
         <span> رای گیری دوباره </span>
       </button>
-      <button mat-menu-item *ngIf="api.IsAdmin" (change)="api.setStatus()">
+      <button mat-menu-item *ngIf="api.IsAdmin" (click)="api.setStatus()">
         <mat-icon>donut_large</mat-icon>
         <span> {{ api.CurrentStatusTitle }} </span>
       </button>
