@@ -25,7 +25,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +54,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     MatExpansionModule,
     MatCheckboxModule,
+    MatMenuModule,
     ToastrModule.forRoot({ positionClass: 'toast-bottom-center' }),
   ],
   providers: [ApiService],

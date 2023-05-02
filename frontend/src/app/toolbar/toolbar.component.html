@@ -1,37 +1,80 @@
-<mat-toolbar class="bg-gray-100 w-screen h-20 sticky top-0 z-40">
-  <span class="">🃏 SG'Estimate Poker 💪</span>
-  <span class="ml-auto"></span>
+<mat-toolbar class="bg-slate-800 w-screen md:h-16 sticky top-0 z-40">
+  <span class="text-white font-bold text-sm md:text-2xl"
+    >🃏 SG'Estimate Poker
+    <br class="md:hidden" />
+    <sub class="md:hidden">
+      {{ api.CurrentStatusTitle }}
+    </sub>
+  </span>
   <div
-    *ngIf="api.IsAdmin"
-    class="p-1 px-2 mx-2 cursor-pointer hover:bg-[#59C1BD] rounded-lg bg-[#A0E4CB] text-black"
-    (click)="api.reset()"
-  >
-    بازچینی
-  </div>
-  <div
-    *ngIf="api.IsAdmin"
-    class="p-1 px-2 mx-2 cursor-pointer hover:bg-[#59C1BD] rounded-lg bg-[#A0E4CB] text-black"
-    (click)="api.resetVotes()"
-  >
-    رای گیری دوباره
-  </div>
-  <div
-    class="p-1 px-2 mx-2 cursor-pointer hover:bg-[#59C1BD] rounded-lg bg-[#A0E4CB] text-black"
-  >
-    <mat-slide-toggle (change)="api.setStatus()"
-      >{{ api.CurrentStatusTitle }}
-    </mat-slide-toggle>
-  </div>
-  <div
-    class="p-1 px-2 mx-2 cursor-pointer hover:bg-[#CFF5E7] rounded-lg bg-[#CFF5E7] text-[#0e3561]"
+    class="md:hidden text-sm p-1 px-2 mx-2 cursor-pointer bg-gray-100 hover:bg-gray-700 hover:text-white border-dotted border-2 border-gray-500 text-gray-800 rounded-3xl"
     (click)="api.copyToClipboard(api.Ticket)"
   >
     #{{ api.Ticket }}
   </div>
-  <div
-    class="p-1 px-2 mx-2 cursor-pointer hover:bg-red-600 rounded-lg bg-red-500 text-white"
-    (click)="api.logout()"
-  >
-    خروج از اتاق
+  <div class="hidden ml-auto md:flex">
+    <div
+      *ngIf="api.IsAdmin"
+      class="p-1 px-2 mx-2 cursor-pointer hover:bg-white hover:text-black rounded-lg bg-gray-700 text-white"
+      (click)="api.reset()"
+    >
+      بازچینی
+    </div>
+    <div
+      *ngIf="api.IsAdmin"
+      class="p-1 px-2 mx-2 cursor-pointer hover:bg-white hover:text-black rounded-lg bg-gray-700 text-white"
+      (click)="api.resetVotes()"
+    >
+      رای گیری دوباره
+    </div>
+    <div
+      class="p-1 px-2 mx-2 cursor-pointer hover:bg-white hover:text-black rounded-lg bg-gray-700 text-white"
+    >
+      <mat-slide-toggle
+        *ngIf="api.IsAdmin; else StatusView"
+        (change)="api.setStatus()"
+      >
+        {{ api.CurrentStatusTitle }}
+      </mat-slide-toggle>
+      <ng-template #StatusView>
+        {{ api.CurrentStatusTitle }}
+      </ng-template>
+    </div>
+
+    <div
+      class="p-1 px-2 mx-2 cursor-pointer bg-gray-100 hover:bg-gray-700 hover:text-white border-dotted border-2 border-gray-500 text-gray-800 rounded-3xl"
+      (click)="api.copyToClipboard(api.Ticket)"
+    >
+      #{{ api.Ticket }}
+    </div>
+    <div
+      class="w-12 h-12 flex justify-center items-center p-2 mx-2 cursor-pointer hover:bg-red-700 rounded-full bg-red-500 text-white"
+      (click)="api.logout()"
+    >
+      <mat-icon>power_settings_new</mat-icon>
+    </div>
+  </div>
+  <div class="ml-auto md:hidden">
+    <button class="text-white" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ngIf="api.IsAdmin" (click)="api.reset()">
+        <mat-icon>refresh</mat-icon>
+        <span> بازچینی </span>
+      </button>
+      <button mat-menu-item *ngIf="api.IsAdmin" (click)="api.resetVotes()">
+        <mat-icon>how_to_vote</mat-icon>
+        <span> رای گیری دوباره </span>
+      </button>
+      <button mat-menu-item *ngIf="api.IsAdmin" (change)="api.setStatus()">
+        <mat-icon>donut_large</mat-icon>
+        <span> {{ api.CurrentStatusTitle }} </span>
+      </button>
+      <button mat-menu-item (click)="api.logout()">
+        <mat-icon>power_settings_new</mat-icon>
+        <span> خروج </span>
+      </button>
+    </mat-menu>
   </div>
 </mat-toolbar>

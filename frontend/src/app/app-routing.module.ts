@@ -7,22 +7,6 @@ const routes: Routes = [
     path: '',
     component: MainComponent,
   },
-  // {
-  //   path: 'proxies',
-  //   component: ProxiesComponent,
-  // },
-  // {
-  //   path: 'create-proxy',
-  //   component: CreateProxyComponent,
-  // },
-  // {
-  //   path: 'bins',
-  //   component: BinsComponent,
-  // },
-  // {
-  //   path: 'create-bin',
-  //   component: CreateBinComponent,
-  // },
   {
     path: '**',
     redirectTo: '',
