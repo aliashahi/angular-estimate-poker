@@ -1,9 +1,11 @@
 <div class="w-screen h-screen flex justify-center items-center bg-gray-400">
   <div
-    class="w-[calc(100vw/2)] h-[calc(100vh/2)] bg-white shadow-2xl rounded-md flex items-center justify-between"
+    class="w-full md:w-1/2 lg:w-2/3 h-full md:h-1/2 lg:h-2/3 grid grid-cols-1 gap-2 md:flex items-center justify-between"
   >
-    <div class="w-full flex flex-col items-center px-10">
-      <span class="text-5xl">ساختن اتاق برنامه ریزی</span>
+    <div
+      class="w-[calc(100%-32px)] m-4 mx-auto flex flex-col items-center p-4 bg-white rounded-md"
+    >
+      <span class="text-xl md:text-5xl">ساختن اتاق برنامه ریزی</span>
       <span
         (click)="copyToClipboard()"
         class="cursor-pointer hover:bg-gray-200 transition-all text-3xl bg-gray-100 border-dotted border-2 border-gray-500 text-gray-800 rounded-3xl p-2 px-4 m-4"
@@ -24,9 +26,10 @@
         ساخت اتاق برنامه ریزی
       </button>
     </div>
-    <div class="!w-[1px] bg-gray-700 rounded-full h-full !my-10"></div>
-    <div class="w-full flex flex-col items-center px-10">
-      <span class="text-5xl mb-2">وارد اتاق شو</span>
+    <div
+      class="w-[calc(100%-32px)] m-4 mx-auto bg-white rounded-md flex flex-col items-center p-4"
+    >
+      <span class="text-xl md:text-5xl mb-2">وارد اتاق شو</span>
       <mat-form-field class="w-full" appearance="outline">
         <mat-label>نام کاربری</mat-label>
         <input
