@@ -21,16 +21,28 @@ app.use((req, res, next) => {
   next();
 });
 
+const tables = {};
+
 const getTable = (tableName) => {
-  const data = JSON.parse(
-    fs.readFileSync(__dirname + "\\" + tableName, { flag: "a+" }).toString() ||
-      `[]`
-  );
-  return data;
+  if (tables[tableName]) return tables[tableName];
+  else {
+    tables[tableName] = [];
+    return [];
+  }
+  // const data = JSON.parse(
+  //   fs.readFileSync(__dirname + "\\" + tableName, { flag: "a+" }).toString() ||
+  //     `[]`
+  // );
+  // return data;
 };
 const updateTable = (tableName, data) => {
-  fs.writeFileSync(__dirname + tableName, JSON.stringify(data, null, " "));
+  if (!tables[tableName]) {
+    tables[tableName] = [];
+  }
+  tables[tableName] = data;
+  // fs.writeFileSync(__dirname + tableName, JSON.stringify(data, null, " "));
 };
+
 ////////////////////////////////////////////
 app.get("", (req, res) => {
   return res.send("Estiamte Poker v0.1");
