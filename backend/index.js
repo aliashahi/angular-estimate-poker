@@ -45,7 +45,21 @@ const updateTable = (tableName, data) => {
 
 ////////////////////////////////////////////
 app.get("", (req, res) => {
-  return res.send("Estiamte Poker v0.1");
+  return res.send("Estiamte Poker v0.1\n https://pokero.ir");
+});
+
+app.get("/datastore", (req, res) => {
+  return res.send({
+    rooms: getTable(ROOM_TABLE),
+    users: getTable(USER_TABLE),
+  });
+});
+
+app.post("/datastore", (req, res) => {
+  const { rooms, users } = req.body;
+  updateTable(ROOM_TABLE, rooms);
+  updateTable(USER_TABLE, users);
+  return res.status(200).send();
 });
 /* 
 این متد برای ایجاد یک اتاق استفاده میشود
