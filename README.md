@@ -1,5 +1,5 @@
 
-# Estimate Poker Website
+# Angular Estimate Poker
 
 This project is a web application for estimate poker, built using Express.js for the backend and Angular for the frontend.
 
