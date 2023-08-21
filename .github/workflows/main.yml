@@ -4,7 +4,7 @@ name: Main Action v1.0
 on: [push]
 jobs:
   frontend:
-    name: CI
+    name: Frontend CI
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -32,3 +32,27 @@ jobs:
           state-name: ../../.ftp-deploy-sync-state.json
           local-dir: ./frontend/dist/angular-estimate-poker/
           port: 21
+
+  backend:
+    name: Backend CI
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
+    defaults:
+      run:
+        working-directory: ./frontend
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - name: Deploy to Liara.ir
+        env:
+          LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
+        run: |
+          npm i -g @liara/cli@4
+          liara deploy --app="pokero" --port=3000 --api-token="$LIARA_TOKEN" --detach
