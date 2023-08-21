@@ -6,6 +6,9 @@ jobs:
   frontend:
     name: CI
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     if: github.ref == 'refs/heads/main'
     steps:
       - name: 👁‍🗨 Checkout Repo
@@ -13,17 +16,14 @@ jobs:
       - name: 📦 Install Packages
         uses: borales/actions-yarn@v3.0.0
         with:
-          working-directory: ./frontend
           cmd: install # will run `yarn install` command
       - name: 🔨 Build
         uses: borales/actions-yarn@v3.0.0
         with:
-          working-directory: ./frontend
           cmd: build # will run `yarn build` command
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          working-directory: ./frontend
           timeout: 100000
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
