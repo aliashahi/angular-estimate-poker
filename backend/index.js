@@ -53,7 +53,7 @@ const updateTable = (tableName, data) => {
 
 ////////////////////////////////////////////
 app.get("", (req, res) => {
-  return res.send("Estiamte Poker v0.1\n https://pokero.ir");
+  return res.send("Estiamte Poker v1 <br> https://pokero.ir");
 });
 
 /* 
@@ -419,10 +419,6 @@ app.post("/user/update", (req, res) => {
   updateTable(USER_TABLE, users);
 
   return res.status(200).send({});
-});
-
-app.get("/", (req, res) => {
-  return res.send("Estiamte Poker v2.0");
 });
 
 app.listen(3000, "0.0.0.0", () => {
