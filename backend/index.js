@@ -426,5 +426,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(3000, "localhost", () => {
-  console.log(`listening on http://localhost:3000/`);
+  console.log(`listening on http://0.0.0.0:3000/`);
 }).timeout = 2000;
