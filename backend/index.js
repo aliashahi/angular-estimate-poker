@@ -425,6 +425,6 @@ app.get("/", (req, res) => {
   return res.send("Estiamte Poker v2.0");
 });
 
-app.listen(3000, "localhost", () => {
+app.listen(3000, "0.0.0.0", () => {
   console.log(`listening on http://0.0.0.0:3000/`);
 }).timeout = 2000;
