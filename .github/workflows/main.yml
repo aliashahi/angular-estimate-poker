@@ -13,12 +13,12 @@ jobs:
     steps:
       - name: 👁‍🗨 Checkout Repo
         uses: actions/checkout@v2
-      - name: use Yarn
+      - name: 📦 Get Yarn
         uses: borales/actions-yarn@v3.0.0
-      - name: 📦 Install Packages
+      - name: 📦 Install Packages With Yarn
         run: yarn install
         working-directory: ./frontend
-      - name: 🔨 Build
+      - name: 🔨 Build With Yarn
         run: yarn build
         working-directory: ./frontend
       - name: 📂 Sync files
@@ -30,5 +30,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           state-name: ../../.ftp-deploy-sync-state.json
-          local-dir: dist/angular-estimate-poker/
+          local-dir: ./frontend/dist/angular-estimate-poker/
           port: 21
