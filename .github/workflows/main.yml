@@ -36,9 +36,6 @@ jobs:
   backend:
     name: Backend CI
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x, 20.x]
     defaults:
       run:
         working-directory: ./frontend
@@ -48,7 +45,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: "18"
       - run: npm ci
       - name: Deploy to Liara.ir
         env:
