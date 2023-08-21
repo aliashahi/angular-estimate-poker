@@ -422,7 +422,7 @@ app.post("/user/update", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  return res.send("Estiamte Poker v1.0");
+  return res.send("Estiamte Poker v2.0");
 });
 
 app.listen(3000, "localhost", () => {
