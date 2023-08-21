@@ -13,14 +13,14 @@ jobs:
     steps:
       - name: 👁‍🗨 Checkout Repo
         uses: actions/checkout@v2
+      - name: use Yarn
+        uses: borales/actions-yarn@v3.0.0
       - name: 📦 Install Packages
-        uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: install # will run `yarn install` command
+        run: yarn install
+        working-directory: ./frontend
       - name: 🔨 Build
-        uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: build # will run `yarn build` command
+        run: yarn build
+        working-directory: ./frontend
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
