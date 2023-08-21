@@ -9,13 +9,21 @@ app.use(bodyParser.json({ extended: false }));
 const { v4: uuid4 } = require("uuid");
 const { randomInt } = require("crypto");
 
-const ROOM_TABLE = "\\data\\rooms.json";
-const USER_TABLE = "\\data\\users.json";
+const ROOM_TABLE = "ROOM_TABLE";
+const USER_TABLE = "USER_TABLE";
 
 const VOTING = 1;
 const FREEZE = 2;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: true,
+    optionsSuccessStatus: 204,
+  })
+);
+
 app.use((req, res, next) => {
   res.set("Cache-Control", "no-store");
   next();
@@ -48,19 +56,6 @@ app.get("", (req, res) => {
   return res.send("Estiamte Poker v0.1\n https://pokero.ir");
 });
 
-app.get("/datastore", (req, res) => {
-  return res.send({
-    rooms: getTable(ROOM_TABLE),
-    users: getTable(USER_TABLE),
-  });
-});
-
-app.post("/datastore", (req, res) => {
-  const { rooms, users } = req.body;
-  updateTable(ROOM_TABLE, rooms);
-  updateTable(USER_TABLE, users);
-  return res.status(200).send();
-});
 /* 
 این متد برای ایجاد یک اتاق استفاده میشود
 برای ایجاد اتاق دو پارامتر نام کاربری و شماره اتاق الزامی است
