@@ -1,0 +1,34 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+name: Main Action v1.0
+on: [push]
+jobs:
+  frontend:
+    name: CI
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: 👁‍🗨 Checkout Repo
+        uses: actions/checkout@v2
+      - name: 📦 Install Packages
+        uses: borales/actions-yarn@v3.0.0
+        with:
+          working-directory: ./frontend
+          cmd: install # will run `yarn install` command
+      - name: 🔨 Build
+        uses: borales/actions-yarn@v3.0.0
+        with:
+          working-directory: ./frontend
+          cmd: build # will run `yarn build` command
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          working-directory: ./frontend
+          timeout: 100000
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          state-name: ../../.ftp-deploy-sync-state.json
+          local-dir: dist/angular-estimate-poker/
+          port: 21
